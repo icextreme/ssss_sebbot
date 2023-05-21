@@ -4,6 +4,18 @@ async function findSection(year, semester, department, number, section) {
   return await axios.get(`http://www.sfu.ca/bin/wcm/course-outlines?${year}/${semester}/${department}/${number}/${section}`)
 }
 
+function findCourseWithDescription(year, semester, department, number) {
+
+  axios.get(`http://www.sfu.ca/bin/wcm/course-outlines?${year}/${semester}/${department}/${number}/D100`)
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.log('Error:', error.message);
+    });
+
+}
+
 async function findCourse(year, semester, department, number) {
   return await axios.get(`http://www.sfu.ca/bin/wcm/course-outlines?${year}/${semester}/${department}/${number}`)
 }
