@@ -1,16 +1,7 @@
+const axios = require('axios');
 
-function findCourse(year, semester, department, number) {
-  const axios = require('axios');
-
-  axios.get(`http://www.sfu.ca/bin/wcm/course-outlines?${year}/${semester}/${department}/${number}`)
-  // axios.get('http://www.sfu.ca/bin/wcm/course-outlines?2022/Fall/CMPT/379')
-    .then(function (response) {
-      console.log(response.data);
-    })
-    .catch(function (error) {
-      console.log('Error:', error.message);
-    });
-
+async function findCourse(year, semester, department, number) {
+  return await axios.get(`http://www.sfu.ca/bin/wcm/course-outlines?${year}/${semester}/${department}/${number}`)
 }
 
 function findByDepartment(year, semester, department) {
@@ -61,4 +52,8 @@ function findByYear(year) {
 // findByDepartment(2022, 'Fall', 'CMPT')
 // console.log()
 // console.log("Find Course")
-// findCourse(2022, 'Fall', 'CMPT', 379)
+// (async () => {
+//   console.log((await findCourse(2022, 'Fall', 'CMPT', 379)).data)
+// })()
+
+module.exports = { findCourse, findByDepartment, findByYear }
