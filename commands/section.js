@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
-const {findCourse} = require('../api/fetch_course.js');
+const {findSection} = require('../api/fetch_course.js');
+const {formatSection} = require('../api/format_course.js')
 
 module.exports = {
 	data: new SlashCommandBuilder()
