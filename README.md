@@ -39,6 +39,9 @@ Example arguments:
 ### /johnwu
 Shows picture of a really cool guy.
 
+### /csss
+Shows a really cool quote about the CSSS.
+
 ### /register
 Register yourself to a class.
 Ex: `/register cmpt353`
