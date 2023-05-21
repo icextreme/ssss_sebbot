@@ -16,7 +16,7 @@ It can take up from 1 to 3 arguments:
 	- yearterm also works. Ex: 2022fall
 
 There are no strict ordering for these 3 arguments. any of the argument can be before or after the other argument.
-Ex: /course summer2023 cmpt225 d100 == d100 cmpt225 summer2023
+Ex: `/course summer2023 cmpt225 d100` == `/course d100 cmpt225 summer2023`
   
  Note:
  - Only course department (ex. cmpt) is the required argument. Everything else is optional.
@@ -25,15 +25,15 @@ Ex: /course summer2023 cmpt225 d100 == d100 cmpt225 summer2023
  - If course department, course number, and course section are given, it will give out information of the specified section for the specified term (summer
   
 Example arguments:
-- /course fall2022 cmpt225 d100
+- `/course fall2022 cmpt225 d100`
 	Gives out information about cmpt225 d100 section in Fall 2022
-- /course cmpt379 d100
+- `/course cmpt379 d100`
 	Gives out information about cmpt379 d100 section in Summer 2023
-- /course cmpt125
+- `/course cmpt125`
 	Gives out all sections of cmpt125 in Summer 2023
-- /course cmpt
+- `/course cmpt`
 	Gives out all available cmpt courses in Summer 2023
-- /course cmpt fall2022
+- `/course cmpt fall2022`
 	Gives out all available cmpt courses in Fall 2022
 
 ### /johnwu
