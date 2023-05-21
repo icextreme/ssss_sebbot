@@ -1,9 +1,19 @@
+function findCourseWithDescription(year, semester, department, number) {
+  const axios = require('axios');
 
+  axios.get(`http://www.sfu.ca/bin/wcm/course-outlines?${year}/${semester}/${department}/${number}/D100`)
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.log('Error:', error.message);
+    });
+
+}
 function findCourse(year, semester, department, number) {
   const axios = require('axios');
 
   axios.get(`http://www.sfu.ca/bin/wcm/course-outlines?${year}/${semester}/${department}/${number}`)
-  // axios.get('http://www.sfu.ca/bin/wcm/course-outlines?2022/Fall/CMPT/379')
     .then(function (response) {
       console.log(response.data);
     })
@@ -62,3 +72,6 @@ function findByYear(year) {
 // console.log()
 // console.log("Find Course")
 // findCourse(2022, 'Fall', 'CMPT', 379)
+
+console.log("Find Course Description")
+findCourseWithDescription(2022, 'Fall', 'CMPT', 379)
