@@ -13,7 +13,7 @@ module.exports = {
     .addStringOption(option =>
 			option
 				.setName('info')
-				.setDescription('Syntax: <department> <course-number> <section>. Ex: cmpt 379 d100'))
+				.setDescription('Syntax: <department><course-number> <section>. Ex: cmpt379 d100'))
       ,
       
 	async execute(interaction) {
