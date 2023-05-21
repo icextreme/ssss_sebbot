@@ -1,6 +1,8 @@
 
-# ssss_sebbot
+# ssss_sebbot (Seb The Snake)
 The amazing Seb the Snake ready to assist you in helping with any course information.
+
+![Seb The Snake](https://github.com/icextreme/ssss_sebbot/blob/master/assets/happy-seb-head.png?raw=true)
 
 ## Command Guides
 
