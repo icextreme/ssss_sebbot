@@ -11,16 +11,12 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
-    console.log(interaction.options.getString('class_name'))
     const roleName = await interaction.options.getString('class_name');
-
     // Create the role in the server
+    
     interaction.guild.roles
       .create({
-        data: {
-          name: roleName,
-          color: 'RANDOM' // Optional: set the color of the role
-        }
+        name: roleName
       })
       .then((role) => {
         // Assign the created role to the interaction user
@@ -31,5 +27,6 @@ module.exports = {
         console.error('Error creating role:', error);
         interaction.reply('An error occurred while creating the role.');
       });
+
   },
 };
