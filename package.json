@@ -14,5 +14,14 @@
   },
   "devDependencies": {
     "eslint": "^8.41.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icextreme/ssss_sebbot.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/icextreme/ssss_sebbot/issues"
+  },
+  "homepage": "https://github.com/icextreme/ssss_sebbot#readme"
 }
