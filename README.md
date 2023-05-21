@@ -38,3 +38,11 @@ Example arguments:
 
 ### /johnwu
 Shows picture of a really cool guy.
+
+### /register
+Register yourself to a class.
+Ex: `/register cmpt353`
+
+### /findusers
+Find all users with the given role. Useful to find classmates.
+Ex: `/findusers cmpt353`
