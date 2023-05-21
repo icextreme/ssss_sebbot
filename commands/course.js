@@ -17,9 +17,7 @@ module.exports = {
       ,
       
 	async execute(interaction) {
-    const args = interaction.options.getString('info').trim().split(/\s+/)
-
-    let course = "";
+    const args = interaction.options.getString('info').toLowerCase().trim().split(/\s+/)
 
     let term = "summer";
     let year = "2023"
