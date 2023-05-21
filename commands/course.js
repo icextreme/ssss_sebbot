@@ -33,6 +33,7 @@ module.exports = {
 
     for (let arg of args) {
       if (arg.includes("spring") || arg.includes("summer") || arg.includes("fall")) {
+        
         if (arg.length == 4) {
           term = arg
         } else {
