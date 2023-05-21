@@ -1,33 +1,48 @@
 const axios = require('axios');
+const course = require('../commands/course');
 
-
-async function formatSection({name, title, term, description, instructor}) {
-  return `Course name: ${name}\nCourse title: ${title}\nterm: ${term}\nDescription: ${description}\nInstructor name:${instructor.name}\nInstructor email:${instructor.email}`
+function capitalized(str) {
+  return str[0].toUpperCase() + str.substring(1)
 }
 
-function findByDepartment(year, semester, department) {
-  return await axios.get(`http://www.sfu.ca/bin/wcm/course-outlines?${year}/${semester}/${department}`)
+function formatSection({info: {name, title, term, description, prerequisites, courseDetails, materials}, instructor, courseSchedule}) {
+  let res = `**Course name**: ${name}\n**Course title**: ${title}\n**Term**: ${capitalized(term)}\n**Description**: ${description}\n**Prerequisites**: ${prerequisites}\n**Instructor name**: ${instructor[0].name}\n**Instructor email**: ${instructor[0].email}\n\n`
+
+  res += `${courseSchedule[0].startDate} to ${courseSchedule[0].endDate}\n**Schedules**:\n`
+  for (let schedule of courseSchedule) {
+    let {campus, buildingCode, roomNumber, sectionCode, days, startTime, endTime} = schedule
+    res += `- ${sectionCode} ${campus} ${buildingCode} ${roomNumber} ${days} ${startTime}-${endTime}\n`
+  }
+  return res
 }
 
-function findBySemester(year, semester) {
-  return await axios.get(`http://www.sfu.ca/bin/wcm/course-outlines?${year}/${semester}`)
+function formatCourse(sections, courseNumber, dept, term, year) {
+  if (sections.length == 0) {
+    return `${dept.toUpperCase()} ${courseNumber} has no section in ${capitalized(term)} ${year}`
+  }
+  let res = `All sections of ${dept.toUpperCase()} ${courseNumber}: ${sections[0].title} in ${capitalized(term)} ${year}:\n\n`
+  for (let section of sections) {
+    let { text, sectionCode } = section
+    res += `**${text}** - ${sectionCode}\n`
+  }
+  return res
 }
 
-function findByYear(year) {
-  return await axios.get(`http://www.sfu.ca/bin/wcm/course-outlines?${year}`)
-}
-// console.log("Find by Year")
-// findByYear(2022)
-// console.log()
-// console.log("Find by Semester")
-// findBySemester(2022, 'Fall')
-// console.log()
-// console.log("Find by Department")
-// findByDepartment(2022, 'Fall', 'CMPT')
-// console.log()
-// console.log("Find Course")
-// (async () => {
-//   console.log((await findCourse(2022, 'Fall', 'CMPT', 379)).data)
-// })()
 
-module.exports = { findCourse, findByDepartment, findByYear }
+function formatCourses(courses, dept, term, year) {
+  if (courses.length == 0) {
+    return `${dept.toUpperCase()} has no courses in ${capitalized(term)} ${year}`
+  }
+
+  let res = `All courses of **${dept.toUpperCase()}** department in ${capitalized(term)} ${year}:\n\n`
+  for (let course of courses) {
+    let { text, title }= course
+    let newCourse = `**${text}** - ${title}\n`
+    if (res.length + newCourse.length > 2000) break
+    res += `**${text}** - ${title}\n`
+  }
+  return res
+}
+
+
+module.exports = { formatSection, formatCourse, formatCourses }
